@@ -6,6 +6,7 @@ import Reward from 'react-rewards';
 import axios from 'axios';
 import ScrollToTop from "react-scroll-to-top";
 import ReactTooltip from 'react-tooltip';
+import { useMediaQuery } from 'react-responsive'
 
 export default function Home() {
   const reward = useRef();
@@ -23,6 +24,15 @@ export default function Home() {
     }
 
   }
+
+  const isDesktopOrLaptop = useMediaQuery({
+    query: '(min-width: 901)'
+  })
+  const isBigScreen = useMediaQuery({ query: '(min-width: 1824px)' })
+  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 900px)' })
+  const isPortrait = useMediaQuery({ query: '(orientation: portrait)' })
+  const isRetina = useMediaQuery({ query: '(min-resolution: 2dppx)' })
+
   return (
     <>
       <ScrollToTop smooth />
@@ -30,7 +40,7 @@ export default function Home() {
       <section className="hero is-fullheight"
         style={{ backgroundColor: "#271140" }}>
         <div className="hero-body">
-          <div className="columns" style={{ width: "100%" }}>
+          <div className="columns is-justify-content-center" style={{ width: "100%" }}>
             <div className="column is-half is-flex is-flex-direction-column is-justify-content-space-between">
               <div>
                 <p className="title is-size-1 has-text-white mb-6">
@@ -42,10 +52,10 @@ export default function Home() {
                   of your business then watch the magic unfold!
                 </p>
               </div>
-              <div className="field has-addons">
+              <div className="field has-addons mt-6">
                 <div className="control">
                   <input
-                    className="input is-large"
+                    className={`input ${isTabletOrMobile ? "is-medium" : "is-large"}`}
                     type="text"
                     placeholder="E.g: gym burger"
                     value={userInput}
@@ -57,7 +67,7 @@ export default function Home() {
                     ref={(ref) => { reward.current = ref }}
                     type='confetti'
                   >
-                    <a className="button is-large has-text-white"
+                    <a className={`button ${isTabletOrMobile ? "is-medium" : "is-large"} has-text-white`}
                       style={{
                         backgroundColor: "#3cbed0",
                         borderColor: "transparent"
@@ -69,11 +79,13 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            <div className="column is-half">
-              <a data-tip="Illustration: SALY - 3D Illustration Pack by Alzea" href="https://www.figma.com/community/file/890095002328610853/SALY---3D-Illustration-Pack">
-                <Image src={landingImg} alt="hands scribbling" layout="intrinsic" />
-              </a>
-            </div>
+            {!isTabletOrMobile ?
+              <div className="column is-half is-flex is-justify-content-center is-align-items-center">
+                <a data-tip="Illustration: SALY - 3D Illustration Pack by Alzea" href="https://www.figma.com/community/file/890095002328610853/SALY---3D-Illustration-Pack">
+                  <Image src={landingImg} alt="hands scribbling" layout="intrinsic" />
+                </a>
+              </div> : null
+            }
 
           </div>
         </div>
