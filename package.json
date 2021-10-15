@@ -1,0 +1,27 @@
+{
+  "name": "business-name-generator",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@rstacruz/startup-name-generator": "0.3.0",
+    "axios": "^0.23.0",
+    "bulma": "^0.9.3",
+    "next": "11.1.2",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-rewards": "^1.1.2",
+    "react-scroll-to-top": "^1.0.5",
+    "react-tooltip": "^4.2.21",
+    "swr": "^1.0.1"
+  },
+  "devDependencies": {
+    "eslint": "7.32.0",
+    "eslint-config-next": "11.1.2"
+  }
+}
